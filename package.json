@@ -1,0 +1,22 @@
+{
+  "name": "dotfiles",
+  "version": "1.0.0",
+  "description": "Repository for configuring and setting up my key dotfiles",
+  "main": "index.ts",
+  "scripts": {
+    "configure": "ts-node index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/W-E-Robinson/dotfiles.git"
+  },
+  "keywords": [
+    "dotfiles"
+  ],
+  "author": "Will Robinson (github: W-E-Robinson)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/W-E-Robinson/dotfiles/issues"
+  },
+  "homepage": "https://github.com/W-E-Robinson/dotfiles#readme"
+}
