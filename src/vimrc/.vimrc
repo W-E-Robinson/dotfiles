@@ -12,3 +12,4 @@ set incsearch
 set scrolloff=8
 set signcolumn=yes
 set colorcolumn=80
+hello there son
