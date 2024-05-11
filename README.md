@@ -3,11 +3,11 @@
 This repo contains my dotfiles for configuring Git, Bash, Neovim and Vim.
 
 ## Configurations
-- **.gitconfig**: The .gitconfig file contains configurations for Git.
+- (TO_DO) **.gitconfig**: The .gitconfig file contains configurations for Git.
 
-- **.bashrc**: The .bashrc file contains settings and configurations for the Bash shell.
+- (TO_DO) **.bashrc**: The .bashrc file contains settings and configurations for the Bash shell.
 
-- **.config/nvim**: This directory contains configurations for Neovim, an improved version of Vim. Its configuration files reside in the .config/nvim directory.
+- (TO_DO) **.config/nvim**: This directory contains configurations for Neovim, an improved version of Vim. Its configuration files reside in the .config/nvim directory.
 
 - **.vimrc**: Configuration file for Vim editor settings.
 
@@ -29,7 +29,7 @@ To set up these configurations on your system, follow either of the following tw
     npm run configure
     ```
 
-### Use Docker:
+### Use Docker: (TO_DO)
 1. Build the docker image:
 
     ```sh
