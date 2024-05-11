@@ -4,7 +4,7 @@ import { homedir } from 'os';
 import { readFile, writeFile } from 'fs';
 import { prompt } from 'enquirer';
 
-import type { Dotfile } from './types.d.ts';
+import type { Dotfile } from '../types.d.ts';
 
 const diff = (file1: string, file2: string): Promise<string> => {
     return new Promise((resolve, reject) => {
@@ -24,15 +24,15 @@ const topRepoLevel = (): Promise<string> => {
     });
 };
 
-const readFileAsync = promisify(readFile);
-const writeFileAsync = promisify(writeFile);
-
 const setupSingleFileConfig = async (dotf: Dotfile): Promise<void> => {
-    const userDotfilePath = `${homedir()}/.${dotf}`;
+    const readFileAsync = promisify(readFile);
+    const writeFileAsync = promisify(writeFile);
 
     let skipFileWrite = false;
+
+    const userDotfilePath = `${homedir()}/.${dotf}`;
     let repoDotfilePath = await topRepoLevel();
-    repoDotfilePath += `/src/${dotf}/.${dotf}`;
+    repoDotfilePath += `/src/dotfiles/${dotf}/.${dotf}`;
     let filesDiff = await diff(repoDotfilePath, userDotfilePath);
 
     if (!filesDiff) {

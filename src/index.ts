@@ -1,5 +1,5 @@
 import { prompt } from 'enquirer';
-import setupSingleFileConfig from './utils';
+import setupSingleFileConfig from './utils/index';
 
 import type { Dotfile } from './types.d.ts';
 
