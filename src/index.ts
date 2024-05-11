@@ -2,14 +2,7 @@ import { prompt } from 'enquirer';
 
 import setupVimrc from './vimrc';
 
-// const setupBashrc = () => { console.log('setupbashrc') };
-// const setupGitconfig = () => { console.log('setupgitconfig') };
-// const setupNvim = () => { console.log('setupnvim') };
-
 const dotfiles = [
-    // { display: '~/.bashrc', setupFunction: setupBashrc },
-    // { display: '~/.gitconfig', setupFunction: setupGitconfig },
-    // { display: '~/.config/nvim/', setupFunction: setupNvim },
     { display: '~/.vimrc', setupFunction: setupVimrc },
 ];
 
