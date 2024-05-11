@@ -1,27 +1,26 @@
 import { prompt } from 'enquirer';
+import setupSingleFileConfig from './utils';
 
-import setupVimrc from './vimrc';
+import type { Dotfile } from './types.d.ts';
 
-const dotfiles = [
-    { display: '~/.vimrc', setupFunction: setupVimrc },
-];
+const dotfiles: Dotfile[] = ['vimrc'];
 
 const dotfilesPrompt = prompt({
     type: 'multiselect',
     name: 'dotfiles',
     message: 'Select the dotfiles you wish to create',
-    choices: dotfiles.map(dotfile => dotfile.display),
+    choices: dotfiles,
 });
 
 dotfilesPrompt
     .then(async (values) => {
-        const answers = (values as { dotfiles: string[] }).dotfiles;
+        const answers = (values as { dotfiles: Dotfile[] }).dotfiles;
         if (!answers.length) {
             throw new Error('No dotfiles selected');
         }
 
-        for (const dotfile of dotfiles.filter(dotf => answers.includes(dotf.display))) {
-            await dotfile.setupFunction()
+        for (const dotfile of answers) {
+            await setupSingleFileConfig(dotfile)
         }
     })
     .catch((err) => console.error(err));

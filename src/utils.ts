@@ -1,6 +1,12 @@
+import { promisify } from 'util';
 import { exec } from 'child_process';
+import { homedir } from 'os';
+import { readFile, writeFile } from 'fs';
+import { prompt } from 'enquirer';
 
-export const diff = (file1: string, file2: string): Promise<string> => {
+import type { Dotfile } from './types.d.ts';
+
+const diff = (file1: string, file2: string): Promise<string> => {
     return new Promise((resolve, reject) => {
         exec(`diff ${file1} ${file2}`, (err, stdout, _stderr) => {
             if (err?.code === 2) reject(err);
@@ -9,7 +15,7 @@ export const diff = (file1: string, file2: string): Promise<string> => {
     });
 };
 
-export const topRepoLevel = (): Promise<string> => {
+const topRepoLevel = (): Promise<string> => {
     return new Promise((resolve, reject) => {
         exec('git rev-parse --show-toplevel', (err, stdout, stderr) => {
             if (err || stderr) reject(err ?? stderr);
@@ -17,3 +23,45 @@ export const topRepoLevel = (): Promise<string> => {
         });
     });
 };
+
+const readFileAsync = promisify(readFile);
+const writeFileAsync = promisify(writeFile);
+
+const setupSingleFileConfig = async (dotf: Dotfile): Promise<void> => {
+    const userDotfilePath = `${homedir()}/.${dotf}`;
+
+    let skipFileWrite = false;
+    let repoDotfilePath = await topRepoLevel();
+    repoDotfilePath += `/src/${dotf}/.${dotf}`;
+    let filesDiff = await diff(repoDotfilePath, userDotfilePath);
+
+    if (!filesDiff) {
+        console.log(`No difference detected between "/${dotf}"s, skipping`);
+        skipFileWrite = true;
+    }
+    else {
+        console.log('diff output:');
+        console.log(filesDiff);
+
+        const answer = await prompt({
+            type: 'confirm',
+            name: 'question',
+            message: 'Do you wish to continue?'
+        })
+        if (!(answer as { question: boolean }).question) skipFileWrite = true;
+    }
+
+    if (skipFileWrite) return;
+
+    const data = await readFileAsync(repoDotfilePath, 'utf8');
+    await writeFileAsync(userDotfilePath, data);
+    console.log('File written');
+
+    filesDiff = await diff(repoDotfilePath, userDotfilePath);
+    if (filesDiff) {
+        throw new Error('Post write file check unsuccessful');
+    }
+    console.log('Post write file check successful');
+};
+
+export default setupSingleFileConfig;
