@@ -1,60 +1,49 @@
+import { promisify } from 'util';
 import { readFile, writeFile } from 'fs';
 import { homedir } from 'os';
 import { prompt } from 'enquirer';
 
-import runDiff from '../utils';
+import { diff, topRepoLevel } from '../utils';
+
+const readFileAsync = promisify(readFile);
+const writeFileAsync = promisify(writeFile);
 
 // NOTE: can modularise this whole function for single file dotfiles?
-const setupVimrc = (): void => {
-    // NOTE: make below relative so can be run anywhere?= const find = require('find-package-json');?
-    // or use git rev-parse --show-toplevel = gives top level of git repo?
-    const repoVimrcPath = './src/vimrc/.vimrc';
+const setupVimrc = async (): Promise<void> => {
     const userVimrcPath = `${homedir()}/.vimrc`;
+
     let skipFileWrite = false;
+    let repoVimrcPath = await topRepoLevel();
+    repoVimrcPath += '/src/vimrc/.vimrc';
+    let filesDiff = await diff(repoVimrcPath, userVimrcPath);
 
-    readFile(userVimrcPath, 'utf8', (err, data) => {
-        if (err && err.code !== 'ENOENT') throw err;
-        if (data === undefined) return;
+    if (!filesDiff) {
+        console.log('No difference detected between "/vimrc"s, skipping');
+        skipFileWrite = true;
+    }
+    else {
+        console.log('diff output:');
+        console.log(filesDiff);
 
-        console.log('Warning: A ".vimrc" file has been found');
-        runDiff(repoVimrcPath, userVimrcPath, (output) => {
-            if (!output) {
-                console.log('No difference detected between "/vimrc"s, exiting');
-                skipFileWrite = true;
-            } else { // NOTE: diff goes wrong when the files are actually different
-                console.log('diff output:');
-                console.log(output);
-
-                prompt({
-                    type: 'confirm',
-                    name: 'question',
-                    message: 'Do you wish to continue?'
-                })
-                    .then(answer => {
-                        if (!(answer as { question: boolean }).question) skipFileWrite = true;
-                    })
-                    .catch(err => {
-                        throw err;
-                    });
-            }
-        });
-    });
+        const answer = await prompt({
+            type: 'confirm',
+            name: 'question',
+            message: 'Do you wish to continue?'
+        })
+        if (!(answer as { question: boolean }).question) skipFileWrite = true;
+    }
 
     if (skipFileWrite) return;
 
-    readFile(repoVimrcPath, 'utf8', (err, data) => {
-        if (err) throw err;
+    const data = await readFileAsync(repoVimrcPath, 'utf8');
+    await writeFileAsync(userVimrcPath, data);
+    console.log('File written');
 
-        writeFile(userVimrcPath, data, err => {
-            if (err) throw err;
-            console.log('File written successfully');
-        });
-    });
-
-    runDiff(repoVimrcPath, userVimrcPath, (output) => {
-        if (output) throw new Error('Post file write check unsuccessful');
-        console.log('Post file write check successful');
-    });
+    filesDiff = await diff(repoVimrcPath, userVimrcPath);
+    if (filesDiff) {
+        throw new Error('Post write file check unsuccessful');
+    }
+    console.log('Post write file check successful');
 };
 
 export default setupVimrc;

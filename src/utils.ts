@@ -1,11 +1,19 @@
 import { exec } from 'child_process';
 
-const runDiff = (file1: string, file2: string, callback: ((stdout: string) => void)) => {
-    exec(`diff ${file1} ${file2}`, (error, stdout, stderr) => {
-        if (error) throw new Error(`Error executing diff command: ${error}`);
-        if (stderr) throw new Error(`diff command encountered an error: ${stderr}`);
-        callback(stdout);
+export const diff = (file1: string, file2: string): Promise<string> => {
+    return new Promise((resolve, reject) => {
+        exec(`diff ${file1} ${file2}`, (err, stdout, _stderr) => {
+            if (err?.code === 2) reject(err);
+            resolve(stdout);
+        });
     });
-}
+};
 
-export default runDiff;
+export const topRepoLevel = (): Promise<string> => {
+    return new Promise((resolve, reject) => {
+        exec('git rev-parse --show-toplevel', (err, stdout, stderr) => {
+            if (err || stderr) reject(err ?? stderr);
+            resolve(stdout.trim());
+        });
+    });
+};

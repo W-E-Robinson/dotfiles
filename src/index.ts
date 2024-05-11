@@ -14,14 +14,14 @@ const dotfilesPrompt = prompt({
 });
 
 dotfilesPrompt
-    .then(values => {
+    .then(async (values) => {
         const answers = (values as { dotfiles: string[] }).dotfiles;
         if (!answers.length) {
-            throw new Error('Error: No dotfiles selected');
+            throw new Error('No dotfiles selected');
         }
 
         for (const dotfile of dotfiles.filter(dotf => answers.includes(dotf.display))) {
-            dotfile.setupFunction();
+            await dotfile.setupFunction()
         }
     })
     .catch((err) => console.error(err));
