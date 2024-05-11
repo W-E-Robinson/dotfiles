@@ -22,4 +22,4 @@ and the commits follow [Conventional Commits](https://kapeli.com/cheat_sheets/Co
 
 - Initial repo set up (structure, dependencies, README, CHANGELOG etc).
 - Scripting to create single file dotfiles with testing.
-- .vimrc dotfiles configuration.
+- .vimrc dotfile configuration.
