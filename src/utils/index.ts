@@ -33,6 +33,7 @@ const setupSingleFileConfig = async (dotf: Dotfile): Promise<void> => {
     const userDotfilePath = `${homedir()}/.${dotf}`;
     let repoDotfilePath = await repoDotfileLocation(dotf);
     let filesDiff = await diff(repoDotfilePath, userDotfilePath);
+    // NOTE: what if they userDotfilePath doesn't exist and merely writing a new file?
 
     if (!filesDiff) {
         console.log(`No difference detected between "/${dotf}"s, skipping`);
