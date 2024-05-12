@@ -15,11 +15,11 @@ const diff = (file1: string, file2: string): Promise<string> => {
     });
 };
 
-const topRepoLevel = (): Promise<string> => {
+const repoDotfileLocation = (dotf: Dotfile): Promise<string> => {
     return new Promise((resolve, reject) => {
         exec('git rev-parse --show-toplevel', (err, stdout, stderr) => {
             if (err || stderr) reject(err ?? stderr);
-            resolve(stdout.trim());
+            resolve(`${stdout.trim()}/src/dotfiles/${dotf}/.${dotf}`);
         });
     });
 };
@@ -31,8 +31,7 @@ const setupSingleFileConfig = async (dotf: Dotfile): Promise<void> => {
     let skipFileWrite = false;
 
     const userDotfilePath = `${homedir()}/.${dotf}`;
-    let repoDotfilePath = await topRepoLevel();
-    repoDotfilePath += `/src/dotfiles/${dotf}/.${dotf}`;
+    let repoDotfilePath = await repoDotfileLocation(dotf);
     let filesDiff = await diff(repoDotfilePath, userDotfilePath);
 
     if (!filesDiff) {
