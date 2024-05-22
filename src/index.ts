@@ -1,5 +1,6 @@
 import { prompt } from 'enquirer';
-import setupSingleFileConfig from './utils/index';
+
+import { setupSingleFileConfig } from './utils/index';
 
 import type { Dotfile } from './types.d.ts';
 
@@ -15,9 +16,7 @@ const dotfilesPrompt = prompt({
 dotfilesPrompt
     .then(async (values) => {
         const answers = (values as { dotfiles: Dotfile[] }).dotfiles;
-        if (!answers.length) {
-            throw new Error('No dotfiles selected');
-        }
+        if (!answers.length) throw new Error('No dotfiles selected');
 
         for (const dotfile of answers) {
             await setupSingleFileConfig(dotfile)
