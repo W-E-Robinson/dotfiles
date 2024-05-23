@@ -4,7 +4,8 @@
   "description": "Repository for configuring and setting up my key dotfiles",
   "main": "index.ts",
   "scripts": {
-    "configure": "ts-node src/index.ts"
+    "configure": "ts-node src/index.ts",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -22,5 +23,15 @@
   "dependencies": {
     "enquirer": "^2.4.1",
     "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "typescript": "^5.4.5"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testMatch": ["**/__tests__/index.test.ts"]
   }
 }
