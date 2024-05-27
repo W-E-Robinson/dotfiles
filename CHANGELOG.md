@@ -15,6 +15,8 @@ and the commits follow [Conventional Commits](https://kapeli.com/cheat_sheets/Co
 - Bashrc.
 - Gitconfig.
 - Dockerfile installation.
+- Pipeline
+- Vulnerability Scanner
 
 ## [1.0.0] - 2024-05-12
 
