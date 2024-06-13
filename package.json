@@ -32,6 +32,8 @@
   },
   "jest": {
     "preset": "ts-jest",
-    "testMatch": ["**/__tests__/index.test.ts"]
+    "testMatch": [
+      "**/__tests__/index.test.ts"
+    ]
   }
 }
