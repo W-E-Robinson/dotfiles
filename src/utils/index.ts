@@ -3,8 +3,9 @@ import { exec } from 'child_process';
 import { homedir } from 'os';
 import { readFile, writeFile } from 'fs';
 import { prompt } from 'enquirer';
+import { join } from 'path';
 
-import type { Dotfile } from '../types.d.ts';
+import type { Dotfile } from '../index';
 
 const diff = (file1: string, file2: string): Promise<string> => {
     return new Promise((resolve, reject) => {
@@ -15,40 +16,27 @@ const diff = (file1: string, file2: string): Promise<string> => {
     });
 };
 
-export const repoTopLevel = (pathExtension: string = ''): Promise<string> => {
-    return new Promise((resolve, reject) => {
-        exec('git rev-parse --show-toplevel', (err, stdout, stderr) => {
-            if (err || stderr) reject(err ?? stderr);
-            resolve(stdout.trim() + pathExtension);
-        });
-    });
-};
+const readFileAsync = promisify(readFile);
+const writeFileAsync = promisify(writeFile);
 
-export const setupSingleFileConfig = async (dotf: Dotfile): Promise<void> => {
-    const readFileAsync = promisify(readFile);
-    const writeFileAsync = promisify(writeFile);
+const setUpDotfile = async (dotfile: Dotfile): Promise<void> => {
+    const userDotfilePath = `${homedir()}/${dotfile}`;
+    const repoDotfilePath = join(__dirname, '..', 'assets', dotfile);
 
-    let skipFileWrite = false;
-
-    const userDotfilePath = `${homedir()}/.${dotf}`;
-    let repoDotfilePath = await repoTopLevel(`/src/dotfiles/$${dotf}/.${dotf}`);
-
-    let doesUserDotfileExist = true;
+    let userDotfileExists = true;
     readFileAsync(userDotfilePath)
         .catch(err => {
             if (err.code !== 'ENOENT') throw err;
-            doesUserDotfileExist = false;
+            userDotfileExists = false;
         });
 
-    let filesDiff = '';
-    if (doesUserDotfileExist) {
-        filesDiff = await diff(repoDotfilePath, userDotfilePath);
+    if (userDotfileExists) {
+        const filesDiff = await diff(repoDotfilePath, userDotfilePath);
 
         if (!filesDiff) {
-            console.log(`No difference detected between "/${dotf}"s, skipping`);
-            skipFileWrite = true;
-        }
-        else {
+            console.log(`No difference detected between the '${dotfile}'s, skipping.`);
+            return;
+        } else {
             console.log('diff output:');
             console.log(filesDiff);
 
@@ -57,17 +45,13 @@ export const setupSingleFileConfig = async (dotf: Dotfile): Promise<void> => {
                 name: 'question',
                 message: 'Do you wish to continue?'
             })
-            if (!(answer as { question: boolean }).question) skipFileWrite = true;
+            if (!(answer as { question: boolean }).question) return;
         }
     }
 
-    if (skipFileWrite) return;
-
     const data = await readFileAsync(repoDotfilePath, 'utf8');
     await writeFileAsync(userDotfilePath, data);
-    console.log('File written');
-
-    filesDiff = await diff(repoDotfilePath, userDotfilePath);
-    if (filesDiff) throw new Error('Post write file check unsuccessful');
-    console.log('Post write file check successful');
+    console.log(`'${dotfile}' successfully written.`);
 };
+
+export default setUpDotfile;

@@ -1,10 +1,10 @@
 import { prompt } from 'enquirer';
 
-import { setupSingleFileConfig } from './utils/index';
+import setUpDotfile from './utils/index';
 
-import type { Dotfile } from './types.d.ts';
+export type Dotfile = '.vimrc';
 
-const dotfiles: Dotfile[] = ['vimrc'];
+const dotfiles: Dotfile[] = ['.vimrc'];
 
 const dotfilesPrompt = prompt({
     type: 'multiselect',
@@ -19,7 +19,7 @@ dotfilesPrompt
         if (!answers.length) throw new Error('No dotfiles selected');
 
         for (const dotfile of answers) {
-            await setupSingleFileConfig(dotfile)
+            await setUpDotfile(dotfile)
         }
     })
-    .catch((err) => console.error(err));
+    .catch((err) => console.error(err.message));
