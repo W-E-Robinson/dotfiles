@@ -11,8 +11,6 @@ This Changelog is formatted according to [Keep a Changelog](https://keepachangel
 - Bashrc.
 - Gitconfig.
 - Dockerfile.
-- Pipeline (or git hook run on push).
-- Vulnerability Scanner?.
 
 ## [1.0.0] - 2024-XX-XX
 
