@@ -2,26 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
-this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
-and the commits follow [Conventional Commits](https://kapeli.com/cheat_sheets/Conventional_Commits.docset/Contents/Resources/Documents/index).
+This Changelog is formatted according to [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
 ## [Unreleased]
 
 ### Added
 
-- Linting.
-- Neovim.
 - Bashrc.
 - Gitconfig.
-- Dockerfile installation.
-- Pipeline
-- Vulnerability Scanner
+- Dockerfile.
+- Pipeline (or git hook run on push).
+- Vulnerability Scanner?.
 
-## [1.0.0] - 2024-05-12
+## [1.0.0] - 2024-XX-XX
 
 ### Added
 
-- Initial repo set up (structure, dependencies, README, CHANGELOG etc).
+- Initial repo set up (structure, dependencies, README, CHANGELOG, linting, TypeScript).
 - Scripting to create single file dotfiles with testing.
 - .vimrc dotfile configuration.
