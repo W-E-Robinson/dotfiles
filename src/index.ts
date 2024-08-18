@@ -9,7 +9,7 @@ const dotfiles: Dotfile[] = ['.vimrc'];
 const dotfilesPrompt = prompt({
     type: 'multiselect',
     name: 'dotfiles',
-    message: 'Select the dotfiles you wish to create',
+    message: 'Select the dotfiles you wish to create (use space bar)',
     choices: dotfiles,
 });
 

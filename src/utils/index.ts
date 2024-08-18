@@ -7,7 +7,7 @@ import { join } from 'path';
 
 import type { Dotfile } from '../index';
 
-const diff = (file1: string, file2: string): Promise<string> => {
+const diff = (file1: string, file2: string): Promise<string> => { // NOTE: think on export as diff imported to used in
     return new Promise((resolve, reject) => {
         exec(`diff ${file1} ${file2}`, (err, stdout, _stderr) => {
             if (err?.code === 2) reject(err);
@@ -21,14 +21,19 @@ const writeFileAsync = promisify(writeFile);
 
 const setUpDotfile = async (dotfile: Dotfile): Promise<void> => {
     const userDotfilePath = `${homedir()}/${dotfile}`;
-    const repoDotfilePath = join(__dirname, '..', 'assets', dotfile);
+    const repoDotfilePath = join(__dirname, '..', 'assets', 'dotfiles', dotfile);
 
     let userDotfileExists = true;
-    readFileAsync(userDotfilePath)
-        .catch(err => {
-            if (err.code !== 'ENOENT') throw err;
+
+    try {
+        await readFileAsync(userDotfilePath);
+    } catch (err) {
+        if ((err as NodeJS.ErrnoException).code === 'ENOENT') {
             userDotfileExists = false;
-        });
+        } else {
+            throw err;
+        }
+    }
 
     if (userDotfileExists) {
         const filesDiff = await diff(repoDotfilePath, userDotfilePath);

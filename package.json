@@ -1,43 +1,43 @@
 {
-  "name": "dotfiles",
-  "version": "1.0.0",
-  "description": "Repository for configuring and setting up my key dotfiles",
-  "main": "index.ts",
-  "scripts": {
-    "configure:old": "ts-node src/index.ts",
-    "configure": "node dist/index.js",
-    "test": "jest"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/W-E-Robinson/dotfiles.git"
-  },
-  "keywords": [
-    "dotfiles"
-  ],
-  "author": "Will Robinson (github: W-E-Robinson)",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/W-E-Robinson/dotfiles/issues"
-  },
-  "homepage": "https://github.com/W-E-Robinson/dotfiles#readme",
-  "dependencies": {
-    "enquirer": "^2.4.1"
-  },
-  "devDependencies": {
-    "@types/jest": "^29.5.12",
-    "jest": "^29.7.0",
-    "ts-jest": "^29.1.2",
-    "typescript": "^5.4.5",
-    "ts-node": "^10.9.2"
-  },
-  "jest": {
-    "preset": "ts-jest",
-    "testMatch": [
-      "tests/**/*.test.ts"
-    ]
-  },
-  "engines": {
-    "node": ">=14.0.0"
-  }
+    "name": "dotfiles",
+    "version": "1.0.0",
+    "description": "Repository for configuring and setting up my key dotfiles",
+    "main": "index.ts",
+    "scripts": {
+        "configure:old": "ts-node src/index.ts",
+        "configure": "node dist/index.js",
+        "test": "jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/W-E-Robinson/dotfiles.git"
+    },
+    "keywords": [
+        "dotfiles"
+    ],
+    "author": "Will Robinson (github: W-E-Robinson)",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/W-E-Robinson/dotfiles/issues"
+    },
+    "homepage": "https://github.com/W-E-Robinson/dotfiles#readme",
+    "dependencies": {
+        "enquirer": "^2.4.1"
+    },
+    "devDependencies": {
+        "@types/jest": "^29.5.12",
+        "jest": "^29.7.0",
+        "ts-jest": "^29.1.2",
+        "typescript": "^5.4.5",
+        "ts-node": "^10.9.2"
+    },
+    "jest": {
+        "preset": "ts-jest",
+        "testMatch": [
+            "**/?(*.)+(spec|test).ts"
+        ]
+    },
+    "engines": {
+        "node": ">=14.0.0"
+    }
 }

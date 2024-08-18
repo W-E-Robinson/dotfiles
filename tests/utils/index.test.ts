@@ -1,4 +1,3 @@
-import * as os from 'os';
 import { promisify } from 'util';
 import { readFile, mkdir, writeFile, rmdir } from 'fs';
 import { join } from 'path';
@@ -11,52 +10,35 @@ const writeFileAsync = promisify(writeFile);
 const rmdirAsync = promisify(rmdir);
 
 const createTestFixtures = async (): Promise<void> => {
-    const sampleRepoDotfile = await readFileAsync(
-        join(__dirname, 'fixtures', 'sampleRepoDotfile'), 'utf8',
-    );
-    const sampleUserDotfileNoDifferences = await readFileAsync(
-        join(__dirname, 'fixtures', 'sampleUserDotfileNoDifferences'), 'utf8',
-    );
-    const sampleUserDotfileWithDifferences = await readFileAsync(
-        join(__dirname, 'fixtures', 'sampleUserDotfileWithDifferences'), 'utf8',
-    );
+    // const testVimrc = await readFileAsync(join(__dirname, 'fixtures', '.vimrc'), 'utf8',);
 
     await mkdirAsync(join(__dirname, 'tempFixtures'));
-    await writeFileAsync(
-        join(__dirname, 'tempFixtures', 'sampleRepoDotfile'), sampleRepoDotfile
-    );
-    await writeFileAsync(
-        join(__dirname, 'tempFixtures', 'sampleUserDotfileNoDifferences'), sampleUserDotfileNoDifferences
-    );
-    await writeFileAsync(
-        join(__dirname, 'tempFixtures', 'sampleUserDotfileWithDifferences'), sampleUserDotfileWithDifferences
-    );
+    // await writeFileAsync(join(__dirname, 'tempFixtures', '.vimrc'), testVimrc);
 };
 
 const removeTestFixtures = async (): Promise<void> => {
     await rmdirAsync(join(__dirname, 'tempFixtures'), { recursive: true });
 };
 
-describe('setUpDotfile', () => {
-    const spy = jest.spyOn(os, 'homedir');
+jest.mock('os', () => ({
+    ...jest.requireActual('os'),
+    // All paths are relative from 'src/utils/index.ts' due to use of '__dirname'. = correct?
+    // Needs to be relative from top level of repo where npm scripts are run from default.
+    homedir: jest.fn().mockReturnValue('./tests/utils/tempFixtures'),
+}));
 
+describe('setUpDotfile', () => {
     beforeEach(async () => {
-        await createTestFixtures();
+        await createTestFixtures(); // NOTE: may have to do indivudually for each test case certain things created or not
     });
     afterEach(async () => {
         await removeTestFixtures();
-        spy.mockRestore();
     });
 
     describe('Happy paths', () => {
-        it.only('should create a new dotfile if the user\'s dotfile is not found', async () => {
-            spy.mockReturnValueOnce('./fixtures');
-
-            const test = os.homedir();
-            const test2 = os.homedir();
-            expect(test).toBe('/fixtures');
-            expect(test2).toBe('/hello');
-            // await setUpDotfile('sampleDotfile');
+        it('should create a new dotfile if the user\'s dotfile is not found', async () => {
+            // @ts-expect-error - sampleDotfile is not a valid dotfile that can be configured, used only for testing.
+            await setUpDotfile('sampleDotfile');
         });
 
         it('should create a new dotfile if the user\'s dotfile is present and user chooses to overwrite it', async () => {
@@ -67,8 +49,10 @@ describe('setUpDotfile', () => {
             // NOTE: how do user input?
         });
 
-        it('should not create a new dotfile if the user\'s dotfile is present and the same as the repo\'s dotfile', async () => {
-            // await setUpDotfile('sampleDotfile');
+        it.only('should not create a new dotfile if the user\'s dotfile is present and the same as the repo\'s dotfile', async () => {
+            await setUpDotfile('.vimrc');
+            // NOTE: how compare, import diff and look at?
+            // NOTE: still vim-test, may need to make on fly in each test and just make tempFixtures + teardwon on befoer after etc
         });
     });
 
