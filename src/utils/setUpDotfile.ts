@@ -1,20 +1,11 @@
 import { promisify } from 'util';
-import { exec } from 'child_process';
 import { homedir } from 'os';
 import { readFile, writeFile } from 'fs';
 import { prompt } from 'enquirer';
 import { join } from 'path';
 
+import diff from './diff';
 import type { Dotfile } from '../index';
-
-const diff = (file1: string, file2: string): Promise<string> => { // NOTE: think on export as diff imported to used in
-    return new Promise((resolve, reject) => {
-        exec(`diff ${file1} ${file2}`, (err, stdout, _stderr) => {
-            if (err?.code === 2) reject(err);
-            resolve(stdout);
-        });
-    });
-};
 
 const readFileAsync = promisify(readFile);
 const writeFileAsync = promisify(writeFile);

@@ -1,6 +1,6 @@
 import { prompt } from 'enquirer';
 
-import setUpDotfile from './utils/index';
+import setUpDotfile from './utils/setUpDotfile';
 
 export type Dotfile = '.vimrc';
 
