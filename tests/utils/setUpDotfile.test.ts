@@ -47,7 +47,7 @@ describe('setUpDotfile', () => {
         expect(consoleLogSpy).toHaveBeenCalledWith('\'.vimrc\' successfully written.');
 
         const filesDiff = await diff('./src/assets/dotfiles/.vimrc', './tests/utils/tempFixtures/.vimrc');
-        expect(filesDiff).toBeFalsy();
+        expect(filesDiff).toBe('');
     });
 
     it('should not create a new dotfile if the user\'s dotfile is present and the same as the repo\'s dotfile', async () => {
