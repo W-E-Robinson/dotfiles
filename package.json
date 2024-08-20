@@ -4,8 +4,7 @@
     "description": "Repository for configuring and setting up my key dotfiles",
     "main": "index.ts",
     "scripts": {
-        "configure:old": "ts-node src/index.ts",
-        "configure": "node dist/index.js",
+        "configure": "ts-node src/index.ts",
         "test": "jest",
         "lint": "eslint .",
         "lint:fix": "eslint --fix ."
