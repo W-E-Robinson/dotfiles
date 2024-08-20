@@ -1,3 +1,5 @@
+/* eslint no-console: 0 */
+
 import { promisify } from 'util';
 import { homedir } from 'os';
 import { readFile, writeFile } from 'fs';
@@ -32,17 +34,16 @@ const setUpDotfile = async (dotfile: Dotfile): Promise<void> => {
         if (!filesDiff) {
             console.log(`No difference detected between the '${dotfile}'s, skipping.`);
             return;
-        } else {
-            console.log('diff output:');
-            console.log(filesDiff);
-
-            const answer = await prompt({
-                type: 'confirm',
-                name: 'question',
-                message: 'Do you wish to continue?'
-            })
-            if (!(answer as { question: boolean }).question) return;
         }
+        console.log('diff output:');
+        console.log(filesDiff);
+
+        const answer = await prompt({
+            type: 'confirm',
+            name: 'question',
+            message: 'Do you wish to continue?',
+        });
+        if (!(answer as { question: boolean }).question) return;
     }
 
     const data = await readFileAsync(repoDotfilePath, 'utf8');
