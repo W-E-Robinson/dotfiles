@@ -1,3 +1,5 @@
+/* eslint no-console: 0 */
+
 import { prompt } from 'enquirer';
 
 import setUpDotfile from './utils/setUpDotfile';
@@ -19,7 +21,7 @@ dotfilesPrompt
         if (!answers.length) throw new Error('No dotfiles selected');
 
         for (const dotfile of answers) {
-            await setUpDotfile(dotfile)
+            await setUpDotfile(dotfile);
         }
     })
     .catch((err) => console.error(err.message));

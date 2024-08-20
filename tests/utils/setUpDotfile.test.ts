@@ -1,5 +1,7 @@
 import { promisify } from 'util';
-import { readFile, mkdir, writeFile, rm } from 'fs';
+import {
+    readFile, mkdir, writeFile, rm,
+} from 'fs';
 import { join } from 'path';
 import { prompt } from 'enquirer';
 
@@ -24,12 +26,12 @@ jest.mock('os', () => ({
     homedir: jest.fn().mockReturnValue('./tests/utils/tempFixtures'),
 }));
 jest.mock('enquirer', () => ({
-    prompt: jest.fn()
+    prompt: jest.fn(),
 }));
 
 describe('setUpDotfile', () => {
     const mockPrompt = prompt as jest.Mock;
-    const consoleLogSpy = jest.spyOn(console, 'log')
+    const consoleLogSpy = jest.spyOn(console, 'log');
 
     beforeEach(async () => {
         await createTempFixtures();
