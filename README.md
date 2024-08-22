@@ -14,14 +14,20 @@ To set up these configurations on your system, follow the following method:
 npm i
 ```
 
-2. Transpile:
-```sh
-npm run tsc
-```
-
-3. Run npm configuration script:
+2. Run npm configuration script:
 ```sh
 npm run configure
+```
+
+### Use Docker:
+2. Build image:
+```sh
+docker build --pull --no-cache -t dotfiles .
+```
+
+3. Run container:
+```sh
+docker run --rm -it --name dotfiles -v $HOME:/host-home -e HOME=/host-home dotfiles
 ```
 
 The installation process will prompt you for any necessary actions.
