@@ -5,7 +5,7 @@ This repo contains my dotfiles and scripting to write them on to a system.
 ## Configurations
 - **.vimrc**: Configuration file for Vim editor settings.
 
-## Installation
+## Installation (only works for POSIX currenty)
 To set up these configurations on your system, follow the following method:
 
 ### Use locally installed Node:
