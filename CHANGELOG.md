@@ -8,14 +8,7 @@ This Changelog is formatted according to [Keep a Changelog](https://keepachangel
 
 ### Added
 
-- Bashrc.
-- Gitconfig.
-- Dockerfile.
-
-## [1.0.0] - 2024-08-21
-
-### Added
-
 - Initial repo set up (structure, dependencies, README.md, CHANGELOG.md, eslint)
 - Scripting to create dotfiles with testing.
 - .vimrc dotfile configuration.
+- Dockerfile.
