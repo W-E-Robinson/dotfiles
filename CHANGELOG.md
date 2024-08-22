@@ -10,5 +10,7 @@ This Changelog is formatted according to [Keep a Changelog](https://keepachangel
 
 - Initial repo set up (structure, dependencies, README.md, CHANGELOG.md, eslint)
 - Scripting to create dotfiles with testing.
-- .vimrc dotfile configuration.
+- .vimrc configuration.
+- .bashrc configuration.
+- .gitconfig configuration.
 - Dockerfile.
