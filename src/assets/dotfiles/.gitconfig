@@ -1,0 +1,19 @@
+[push]
+	default = current
+[user]
+	name = Will Robinson
+	email = william.ellis.robinson@gmail.com
+[init]
+	defaultBranch = main
+[alias]
+	yeet = restore .
+    st = status
+    s = switch
+    b = branch
+    d = diff
+    ds = diff --staged
+    l = pull
+    gm = merge
+    r = reflog
+    ap = add -p
+    f = fetch

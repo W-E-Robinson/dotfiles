@@ -4,9 +4,9 @@ import { prompt } from 'enquirer';
 
 import setUpDotfile from './utils/setUpDotfile';
 
-export type Dotfile = '.vimrc';
+export type Dotfile = '.vimrc' | '.bashrc' | '.gitconfig';
 
-const dotfiles: Dotfile[] = ['.vimrc'];
+const dotfiles: Dotfile[] = ['.vimrc', '.bashrc', '.gitconfig'];
 
 const dotfilesPrompt = prompt({
     type: 'multiselect',
