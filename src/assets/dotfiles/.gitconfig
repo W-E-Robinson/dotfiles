@@ -6,7 +6,7 @@
 [init]
 	defaultBranch = main
 [alias]
-	yeet = restore .
+    yeet = restore .
     st = status
     s = switch
     b = branch
