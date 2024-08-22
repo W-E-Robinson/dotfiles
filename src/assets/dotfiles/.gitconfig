@@ -17,3 +17,5 @@
     r = reflog
     ap = add -p
     f = fetch
+    cp = cherry-pick
+    amend = commit --amend
