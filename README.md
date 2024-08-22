@@ -10,15 +10,18 @@ To set up these configurations on your system, follow the following method:
 
 ### Use locally installed Node:
 1. Install dependencies:
+```sh
+npm i
+```
 
-    ```sh
-    npm i
-    ```
+2. Transpile:
+```sh
+npm run tsc
+```
 
-2. Run npm configuration script:
-
-    ```sh
-    npm run configure
-    ```
+3. Run npm configuration script:
+```sh
+npm run configure
+```
 
 The installation process will prompt you for any necessary actions.

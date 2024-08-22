@@ -12,7 +12,7 @@ This Changelog is formatted according to [Keep a Changelog](https://keepachangel
 - Gitconfig.
 - Dockerfile.
 
-## [1.0.0] - 2024-08-20
+## [1.0.0] - 2024-08-21
 
 ### Added
 
