@@ -7,8 +7,15 @@ This repo contains my dotfiles and scripting to write them on to a system.
 - **.bashrc**: Configuration file for Bash commands.
 - **.gitconfig**: Configuration file for Git.
 
-## Installation
-To set up these configurations on your system, follow the following method:
+## Installation (only works for POSIX currenty)
+Note, if using macOS you will need to source `.bashrc` in to `.bash_profile`, to do this populate `.bash_profile` with:
+```sh
+if [ -f $HOME/.bashrc ]; then
+    source $HOME/.bashrc
+fi
+```
+
+To set up these configurations on your system, follow one of the following methods:
 
 ### Use locally installed Node:
 1. Install dependencies:

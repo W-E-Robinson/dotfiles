@@ -23,8 +23,7 @@ describe('diff', () => {
         try {
             await diff('./tests/utils/fixtures/diff1', './tests/utils/fixtures/non-existent-diff');
         } catch (error) {
-            // @ts-ignore - interface ExecException is not exported from node
-            expect(error.code).toBe(2);
+            expect((error as NodeJS.ErrnoException).code).toBe(2);
         }
     });
 });
