@@ -3,7 +3,6 @@ name: Dotfiles CI Pipeline
 on:
   pull_request:
     branches: [ '**' ]
-    # branches: [ $default-branch ]
 jobs:
   build:
 
