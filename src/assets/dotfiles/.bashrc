@@ -1,3 +1,5 @@
+alias c='clear'
+
 alias v='vim'
 alias v.='vim .'
 
