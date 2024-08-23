@@ -2,7 +2,8 @@ name: Dotfiles CI Pipeline
 
 on:
   pull_request:
-    branches: [ $default-branch ]
+    branches: [ '**' ]
+    # branches: [ $default-branch ]
 jobs:
   build:
 
@@ -20,5 +21,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npm lint
+    - run: npm run lint
     - run: npm test
