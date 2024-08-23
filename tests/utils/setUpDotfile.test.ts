@@ -67,7 +67,7 @@ describe('setUpDotfile', () => {
         await setUpDotfile('.vimrc');
 
         const filesDiff = await diff('./src/assets/dotfiles/.vimrc', './tests/utils/tempFixtures/.vimrc');
-        expect(filesDiff).toBeFalsy();
+        expect(filesDiff).toBe('');
         expect(consoleLogSpy).toHaveBeenCalledWith('\'.vimrc\' successfully written.');
     });
 
