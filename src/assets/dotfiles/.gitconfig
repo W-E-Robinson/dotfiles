@@ -5,6 +5,11 @@
 	email = william.ellis.robinson@gmail.com
 [init]
 	defaultBranch = main
+[rerere]
+    enabled = true
+    autoUpdate = true
+[branch]
+    sort = -committerdate
 [alias]
     yeet = restore .
     st = status
@@ -19,3 +24,4 @@
     f = fetch
     cp = cherry-pick
     ca = commit --amend
+    bl = blame -w -C -C -C
