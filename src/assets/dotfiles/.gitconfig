@@ -1,10 +1,10 @@
 [push]
-	default = current
+    default = current
 [user]
-	name = Will Robinson
-	email = william.ellis.robinson@gmail.com
+    name = Will Robinson
+    email = william.ellis.robinson@gmail.com
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [rerere]
     enabled = true
     autoUpdate = true
