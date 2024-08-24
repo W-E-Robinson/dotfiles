@@ -17,7 +17,6 @@
     b = branch
     d = diff
     ds = diff --staged
-    l = pull
     gm = merge
     r = reflog
     ap = add -p
