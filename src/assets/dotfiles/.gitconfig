@@ -5,6 +5,8 @@
     email = william.ellis.robinson@gmail.com
 [init]
     defaultBranch = main
+[core]
+    editor = nvim
 [rerere]
     enabled = true
     autoUpdate = true
