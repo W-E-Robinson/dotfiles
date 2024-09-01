@@ -14,4 +14,4 @@ This Changelog is formatted according to [Keep a Changelog](https://keepachangel
 - .bashrc configuration.
 - .gitconfig configuration.
 - Dockerfile.
-- Pipeline for linting and testing.
+- Linting, testing and vulnerability scanning pipelines.
