@@ -39,3 +39,4 @@ jobs:
           ignore-unfixed: true
           vuln-type: 'library'
           severity: 'LOW,MEDIUM,CRITICAL,HIGH'
+          additional-args: '--include-dev-deps'
