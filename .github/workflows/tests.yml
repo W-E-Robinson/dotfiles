@@ -1,4 +1,4 @@
-name: Dotfiles CI Pipeline
+name: Dotfiles Linting and Testing CI Pipeline
 
 on:
   pull_request:
