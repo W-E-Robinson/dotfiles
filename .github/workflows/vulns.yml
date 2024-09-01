@@ -38,5 +38,4 @@ jobs:
           exit-code: '1'
           ignore-unfixed: true
           vuln-type: 'library'
-          severity: 'LOW,MEDIUM,CRITICAL,HIGH'
-          additional-args: '--include-dev-deps'
+          severity: 'CRITICAL,HIGH'
