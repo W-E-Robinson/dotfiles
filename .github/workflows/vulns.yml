@@ -1,12 +1,12 @@
 name: Vulnerability Detection CI Pipeline
+
 on:
   pull_request:
     branches: [ '**' ]
   schedule:
     - cron: "0 12 * * 6"
 jobs:
-  build:
-    name: Build
+  scan-image:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout code
