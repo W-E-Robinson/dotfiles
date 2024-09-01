@@ -34,7 +34,6 @@ jobs:
         with:
           scan-type: 'fs'
           scan-ref: '.'
-          trivy-config: trivy.yaml
           format: 'table'
           exit-code: '1'
           ignore-unfixed: true
