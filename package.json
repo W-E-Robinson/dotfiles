@@ -26,7 +26,7 @@
     },
     "homepage": "https://github.com/W-E-Robinson/dotfiles#readme",
     "dependencies": {
-        "enquirer": "^2.4.1"
+        "enquirer": "1.0.0"
     },
     "devDependencies": {
         "@typescript-eslint/eslint-plugin": "^7.6.0",
