@@ -30,7 +30,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Run Trivy vulnerability scanner in fs mode
-        uses: aquasecurity/trivy-action@0.20.0
+        uses: aquasecurity/trivy-action@0.20.0 --include-dev-deps
         with:
           scan-type: 'fs'
           scan-ref: '.'
@@ -39,4 +39,3 @@ jobs:
           ignore-unfixed: true
           vuln-type: 'library'
           severity: 'LOW,MEDIUM,CRITICAL,HIGH'
-          additional-args: '--include-dev-deps'
