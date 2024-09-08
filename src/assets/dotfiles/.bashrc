@@ -7,10 +7,6 @@ alias v.='vim .'
 alias n='nvim'
 alias n.='nvim .'
 
-function gps () {
-    git fetch && git push
-}
-
 function gc () { # example call: gc "example commit message"
     git commit -m "$1"
 }
@@ -33,6 +29,10 @@ function up_w_develop () {
     export developbranch='develop'
     export currbranch=$(curr_branch)
     git switch $developbranch && git pull && git switch $currbranch && git merge $developbranch
+}
+
+function clean_branches () {
+    git remote prune origin && (git checkout main || git checkout master || exit 1) && git fetch --prune -q && git branch -vv | awk '/: gone]/{print $1}' | xargs -r git branch -D
 }
 
 function begin_bisect () { # example call: begin_bisect 6f35f8c
