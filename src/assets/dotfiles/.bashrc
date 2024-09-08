@@ -32,7 +32,7 @@ function up_w_develop () {
 }
 
 function clean_branches () { # will delete branches that once existed remotely
-    git remote prune origin && (git checkout main || git checkout master || exit 1) && git fetch --prune -q && git branch -vv | awk '/: gone]/{print $1}' | xargs - git branch -D
+    git remote prune origin && (git checkout main || git checkout master || exit 1) && git fetch --prune -q && git branch -vv | awk '/: gone]/{print $1}' | xargs -r git branch -D
 }
 
 function begin_bisect () { # example call: begin_bisect 6f35f8c
