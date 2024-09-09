@@ -8,7 +8,7 @@
         "test": "jest",
         "lint": "eslint .",
         "lint:fix": "eslint --fix .",
-        "pretsc": "if [ -d ./dist]; then rm -r ./dist/*; fi",
+        "pretsc": "if [ -d ./dist ]; then rm -r ./dist/*; fi",
         "tsc": "tsc -p tsconfig.build.json",
         "posttsc": "cp -r src/assets/ dist/assets/"
     },
