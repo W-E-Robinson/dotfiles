@@ -2,7 +2,7 @@
 
 This repo contains my dotfiles and scripting to write them on to a system.
 
-## Configurations
+## Configurations (located at: src/assets/dotfiles/)
 - **.vimrc**: Configuration file for Vim editor settings.
 - **.bashrc**: Configuration file for Bash commands.
 - **.gitconfig**: Configuration file for Git.
