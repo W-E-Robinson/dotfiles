@@ -23,6 +23,7 @@
     m = merge
     r = reflog
     ap = add -p
+    rp = restore -p
     f = fetch
     cp = cherry-pick
     ca = commit --amend
