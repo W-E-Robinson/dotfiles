@@ -16,6 +16,7 @@
     yeet = restore .
     nuke = !git restore . && git clean -fd
     st = status
+    c = commit
     s = switch
     b = branch
     d = diff
