@@ -19,16 +19,28 @@ function curr_branch () {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
 
-function up_w_main () {
+function merge_up_main () {
     export mainbranch='main'
     export currbranch=$(curr_branch)
     git switch $mainbranch && git pull && git switch $currbranch && git merge $mainbranch
 }
 
-function up_w_develop () {
+function merge_up_develop () {
     export developbranch='develop'
     export currbranch=$(curr_branch)
     git switch $developbranch && git pull && git switch $currbranch && git merge $developbranch
+}
+
+function rebase_up_main () {
+    export developbranch='main'
+    export currbranch=$(curr_branch)
+    git switch $developbranch && git pull && git switch $currbranch && git rebase $developbranch
+}
+
+function rebase_up_develop () {
+    export developbranch='develop'
+    export currbranch=$(curr_branch)
+    git switch $developbranch && git pull && git switch $currbranch && git rebase $developbranch
 }
 
 function clean_branches () { # will delete branches that once existed remotely
