@@ -13,7 +13,7 @@
 [branch]
     sort = -committerdate
 [alias]
-    yeet = restore .
+    bomb = restore .
     nuke = !git restore . && git clean -fd
     st = status
     c = commit
