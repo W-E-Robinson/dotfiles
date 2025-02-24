@@ -19,6 +19,28 @@ function curr_branch () {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
 
+function gca () {
+    last_commit_message=$(git log -1 --pretty=%B)
+    echo "Last commit message:"
+    echo
+    echo "$last_commit_message"
+    echo
+
+    while true; do
+      read -p "Still want to amend?" yn
+      if [ "$yn" = "" ]; then
+        yn='Y'
+      fi
+      case $yn in
+          [Yy] ) echo "Continuing amend."; break;;
+          [Nn] ) echo "Aborting amend."; return 0;;
+          * ) echo "Answer (y)es or (n)o.";;
+      esac
+    done
+
+    git commit --amend
+}
+
 function merge_up_main () {
     export mainbranch='main'
     export currbranch=$(curr_branch)
