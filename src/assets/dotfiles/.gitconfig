@@ -28,7 +28,6 @@
     rp = restore -p
     f = fetch
     cp = cherry-pick
-    ca = commit --amend
     bl = blame -w -C -C -C
     pl = pull
     ps = push
