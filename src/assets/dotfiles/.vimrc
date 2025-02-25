@@ -1,9 +1,9 @@
 colo slate                     " Set the color scheme to 'slate'
 syntax on                      " Enable syntax highlighting
 set number relativenumber      " Display line numbers and relative line numbers
-set tabstop=2                  " Set tab size to 2 spaces
-set softtabstop=2              " Set soft tab size to 2 spaces
-set shiftwidth=2               " Set indentation size to 2 spaces
+set tabstop=4                  " Set tab size to 4 spaces
+set softtabstop=4              " Set soft tab size to 4 spaces
+set shiftwidth=4               " Set indentation size to 4 spaces
 set expandtab                  " Use spaces for tabs
 set smartindent                " Enable smart indentation
 set hidden                     " Allow buffers to be hidden instead of closing them
