@@ -18,7 +18,7 @@
     st = status
     c = commit
     s = switch
-    b = branch
+    b = branch -vv
     d = diff
     ds = diff --staged
     m = merge
