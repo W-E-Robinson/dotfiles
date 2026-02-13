@@ -105,9 +105,14 @@ function output_reflog () {
 }
 
 . "$HOME/.cargo/env"
+export PATH="$HOME/.cargo/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export PATH="$PATH:/Users/williamrobinson/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"
+
+# eval "$(luarocks path)"
+export LUA_PATH="/usr/local/Cellar/luarocks/3.11.1/share/lua/5.4/?.lua;/usr/local/share/lua/5.4/?.lua;/usr/local/share/lua/5.4/?/init.lua;/usr/local/lib/lua/5.4/?.lua;/usr/local/lib/lua/5.4/?/init.lua;./?.lua;./?/init.lua;/Users/williamrobinson/.luarocks/share/lua/5.4/?.lua;/Users/williamrobinson/.luarocks/share/lua/5.4/?/init.lua;/usr/local/share/lua/5.4/?.lua"
+export LUA_CPATH="/usr/local/lib/lua/5.4/?.so;/usr/local/lib/lua/5.4/loadall.so;./?.so;/Users/williamrobinson/.luarocks/lib/lua/5.4/?.so"
