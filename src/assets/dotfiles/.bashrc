@@ -125,6 +125,23 @@ npm() {
     fi
 }
 
+make() {
+    if [[ "$1" == "test" ]]; then
+        command make "$@"
+        local status=$?
+
+        if [[ $status -eq 0 ]]; then
+            afplay ~/repos/assets/pass.mp3 2>/dev/null
+        else
+            afplay ~/repos/assets/fail.mp3 2>/dev/null
+        fi
+
+        return $status
+    else
+        command make "$@"
+    fi
+}
+
 export NVM_DIR="$HOME/.nvm"
 mkdir -p "$NVM_DIR"
 source $(brew --prefix nvm)/nvm.sh
