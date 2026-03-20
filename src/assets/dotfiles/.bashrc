@@ -104,6 +104,10 @@ function output_reflog () {
     git reflog * > ./output_reflog.txt
 }
 
+function gpo () {
+    git push -u origin $(git branch --show-current)
+}
+
 . "$HOME/.cargo/env"
 export PATH="$HOME/.cargo/bin:$PATH"
 
