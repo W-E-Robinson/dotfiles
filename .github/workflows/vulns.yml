@@ -3,8 +3,6 @@ name: Vulnerability Detection CI Pipeline
 on:
   pull_request:
     branches: [ '**' ]
-  schedule:
-    - cron: "0 12 * * 6"
 
 jobs:
   scan-image:
