@@ -108,12 +108,12 @@ function gpo () {
     git push -u origin $(git branch --show-current)
 }
 
-. "$HOME/.cargo/env"
-export PATH="$HOME/.cargo/bin:$PATH"
-
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+mkdir -p "$NVM_DIR"
+source $(brew --prefix nvm)/nvm.sh
+
+[ -s "$(brew --prefix nvm)/etc/bash_completion.d/nvm" ] && \
+  source "$(brew --prefix nvm)/etc/bash_completion.d/nvm"
 
 export PATH="$PATH:$HOME/.local/bin"
 
