@@ -108,6 +108,23 @@ function gpo () {
     git push -u origin $(git branch --show-current)
 }
 
+npm() {
+    if [[ "$1" == "test" ]]; then
+        command npm "$@"
+        local status=$?
+
+        if [[ $status -eq 0 ]]; then
+            afplay ~/repos/assets/pass.mp3 2>/dev/null
+        else
+            afplay ~/repos/assets/fail.mp3 2>/dev/null
+        fi
+
+        return $status
+    else
+        command npm "$@"
+    fi
+}
+
 export NVM_DIR="$HOME/.nvm"
 mkdir -p "$NVM_DIR"
 source $(brew --prefix nvm)/nvm.sh
