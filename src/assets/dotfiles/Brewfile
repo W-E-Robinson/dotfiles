@@ -1,0 +1,28 @@
+# brew bundle --file=~/Brewfile
+
+# Elegant Lua unit testing
+brew "busted"
+# Next-generation test runner for Rust
+brew "cargo-nextest"
+# Improved top (interactive process viewer)
+brew "htop"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
+# Tool for linting and static analysis of Lua code
+brew "luacheck"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
+# Open-source, cross-platform JavaScript runtime environment
+brew "node"
+# Manage multiple Node.js versions
+brew "nvm"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# Opinionated Lua code formatter
+brew "stylua"
+# Parser generator tool
+brew "tree-sitter-cli"
+# Internet file retriever
+brew "wget"
+
+cask "font-jetbrains-mono-nerd-font"
