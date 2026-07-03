@@ -48,25 +48,25 @@ function gca () {
     git commit --amend
 }
 
-function merge_up_main () {
+function merge_in_main () {
     export mainbranch='main'
     export currbranch=$(curr_branch)
     git switch $mainbranch && git pull && git switch $currbranch && git merge $mainbranch
 }
 
-function merge_up_develop () {
+function merge_in_develop () {
     export developbranch='develop'
     export currbranch=$(curr_branch)
     git switch $developbranch && git pull && git switch $currbranch && git merge $developbranch
 }
 
-function rebase_up_main () {
-    export developbranch='main'
+function rebase_on_main () {
+    export mainbranch='main'
     export currbranch=$(curr_branch)
-    git switch $developbranch && git pull && git switch $currbranch && git rebase $developbranch
+    git switch $mainbranch && git pull && git switch $currbranch && git rebase $mainbranch
 }
 
-function rebase_up_develop () {
+function rebase_on_develop () {
     export developbranch='develop'
     export currbranch=$(curr_branch)
     git switch $developbranch && git pull && git switch $currbranch && git rebase $developbranch
@@ -141,6 +141,9 @@ make() {
         command make "$@"
     fi
 }
+
+. "$HOME/.cargo/env"
+export PATH="$HOME/.cargo/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 mkdir -p "$NVM_DIR"
