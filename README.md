@@ -8,8 +8,8 @@ This repo contains my dotfiles and scripting to write them on to a system.
 - **.gitconfig**: Configuration file for Git.
 - **Brewfile**: Homebrew packages.
 
-## Installation (only works for POSIX currenty)
-Note, if using macOS you will need to source `.bashrc` in to `.bash_profile`, to do this populate `.bash_profile` with:
+## Installation (only works for POSIX currenty and if not using Homebrew will need need to install packages by another method)
+If using macOS you will need to source `.bashrc` in to `.bash_profile`, to do this populate `.bash_profile` with:
 ```sh
 if [ -f $HOME/.bashrc ]; then
     source $HOME/.bashrc
