@@ -7,6 +7,7 @@
     defaultBranch = main
 [core]
     editor = nvim
+    pager = delta
 [rerere]
     enabled = true
     autoUpdate = true
@@ -32,3 +33,11 @@
     pl = pull
     ps = push
     psf = push --force-with-lease
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true # use n and N to move between diff sections
+    dark = true
+    side-by-side = true
+[merge]
+    conflictStyle = zdiff3
