@@ -100,6 +100,12 @@ function glog_main () {
     clear && git fetch && git log --oneline $mainbranch...$curr_branch
 }
 
+if command -v eza &> /dev/null; then
+    alias ls="eza --icons --group-directories-first"
+    alias l="eza -la --icons --group-directories-first"
+    alias lt="eza --tree --level=2 --icons"
+fi
+
 function output_reflog () {
     git reflog * > ./output_reflog.txt
 }

@@ -24,5 +24,16 @@ brew "stylua"
 brew "tree-sitter-cli"
 # Internet file retriever
 brew "wget"
+# Better file listing
+brew "eza"
+# For clearer git diffs
+brew "git-delta"
+# Faster than cd
+brew "zoxide"
+# Needed for zoxide
+brew "fzf"
 
+# JetBrains Mono Nerd Font, patched with icons
 cask "font-jetbrains-mono-nerd-font"
+# Claude desktop app
+cask "claude"
