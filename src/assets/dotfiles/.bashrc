@@ -148,6 +148,8 @@ make() {
     fi
 }
 
+eval "$(zoxide init bash)"
+
 . "$HOME/.cargo/env"
 export PATH="$HOME/.cargo/bin:$PATH"
 
