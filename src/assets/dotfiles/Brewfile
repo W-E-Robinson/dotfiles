@@ -32,6 +32,8 @@ brew "git-delta"
 brew "zoxide"
 # Needed for zoxide
 brew "fzf"
+# Starship: https://starship.rs/
+brew "starship"
 
 # JetBrains Mono Nerd Font, patched with icons
 cask "font-jetbrains-mono-nerd-font"
