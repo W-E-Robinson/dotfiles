@@ -148,7 +148,6 @@ make() {
     fi
 }
 
-eval "$(zoxide init bash)"
 # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --bash)" # Ctrl-T is good for finding location
 eval "$(starship init bash)"
@@ -168,3 +167,6 @@ export PATH="$PATH:$HOME/.local/bin"
 # eval "$(luarocks path)"
 export LUA_PATH="/usr/local/Cellar/luarocks/3.11.1/share/lua/5.4/?.lua;/usr/local/share/lua/5.4/?.lua;/usr/local/share/lua/5.4/?/init.lua;/usr/local/lib/lua/5.4/?.lua;/usr/local/lib/lua/5.4/?/init.lua;./?.lua;./?/init.lua;/Users/williamrobinson/.luarocks/share/lua/5.4/?.lua;/Users/williamrobinson/.luarocks/share/lua/5.4/?/init.lua;/usr/local/share/lua/5.4/?.lua"
 export LUA_CPATH="/usr/local/lib/lua/5.4/?.so;/usr/local/lib/lua/5.4/loadall.so;./?.so;/Users/williamrobinson/.luarocks/lib/lua/5.4/?.so"
+
+# zoxide must be initialised last: it hooks PROMPT_COMMAND
+eval "$(zoxide init bash)"
