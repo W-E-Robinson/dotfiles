@@ -7,7 +7,7 @@ alias v.='vim .'
 alias n='nvim'
 alias n.='nvim .'
 
-function gc () { # example call: gc "example commit message"
+function gc () {
     last_commit_message=$(git log -1 --pretty=%B)
 
     if [[ "$last_commit_message" =~ WIP ]]; then
@@ -15,7 +15,7 @@ function gc () { # example call: gc "example commit message"
         return 1
     fi
 
-    git commit -m "$1"
+    git commit
 }
 
 function gcb () { # example call: gcb "exampleBranch"
