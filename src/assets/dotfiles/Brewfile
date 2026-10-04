@@ -34,6 +34,14 @@ brew "zoxide"
 brew "fzf"
 # Starship: https://starship.rs/
 brew "starship"
+# Cleaning up images/videos metadata
+# exiftool -all= -o cleaned-video.mov your-video.mov
+# exiftool -all= -o cleaned-image.png your-image.png
+brew "exiftool"
+# ffmpeg -i input.mov -c copy output.mp4
+# Converting .mov to .mp4
+brew "ffmpeg"
+
 
 # JetBrains Mono Nerd Font, patched with icons
 cask "font-jetbrains-mono-nerd-font"
