@@ -28,6 +28,7 @@
     ap = add -p
     rp = restore -p
     f = fetch
+    fa = fetch -a
     cp = cherry-pick
     bl = blame -w -C -C -C
     pl = pull
